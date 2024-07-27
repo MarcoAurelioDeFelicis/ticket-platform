@@ -1,28 +1,34 @@
-M3
+M4
 
 # DB Ticket-Platform
 
-NOME COLONNA                      TIPO                     ATTRIBUTI               INDICI  
+NOME COLONNA                      TIPO             ATTRIBUTI               INDICI  
 
-USER                                                                  
-u_id                              int                      AUTO_INCREMENT           pk
-name                              varchar                  not null 
-u_name                            varchar                  not null unique
-u.password                        varchar                  not null
-u_status                          boolean                  not null
+USER                                                          
+u_id                              int              AUTO_INCREMENT           pk
+name                              varchar          not null 
+u_name                            varchar          not null U
+u_password                        varchar          not null
+u_status                          boolean          not null
+
+
 TICKET
-t_id                              int                      AUTO_INCREMENT           pK
-title                             varchar                  not null
-t_status                          boolean                  not null
-t_text                            varchar                  not null unique
-KIND                                             
-k_id                              int                      AUTO_INCREMENT           pK
-k_name                            varchar                  not null
+t_id                              int              AUTO_INCREMENT           pK
+title                             varchar          not null
+t_status                          boolean          not null
+t_body                            varchar          not null 
+
+CATEGORY                                      
+C_id                              int              AUTO_INCREMENT           pK
+C_name                            varchar          not null
+
 NOTE
-n_id                              int                      AUTO_INCREMENT           pK
-n_name                            varchar                  not null
-ROLE                              int                      not null
-r_id                              int                      AUTO_INCREMENT           pK          
-role                              varchar                  not null
+n_id                              int              AUTO_INCREMENT           pK
+n_name                            varchar          not null
+
+ROLE                              int              not null
+r_id                              int              AUTO_INCREMENT           pK          
+role                              varchar          not null
+
 USER_ROLE
 tabella ponte per M to M , FK id
