@@ -49,8 +49,7 @@ public class User {
 	@JsonManagedReference
 	private List<Ticket> ticket;
 	
-	@ManyToMany(fetch
-			= FetchType.EAGER)
+	@ManyToMany(fetch= FetchType.EAGER)
 	@JsonBackReference
 	private Set<Role> role;
 	
