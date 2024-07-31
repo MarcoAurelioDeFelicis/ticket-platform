@@ -29,12 +29,11 @@ public class SecurityConfiguration {
 	throws Exception {
 	http.authorizeHttpRequests()
     .requestMatchers("/tickets").hasAnyAuthority("ADMIN","USER")     //LISTA TICKETS
-    .requestMatchers("/tickets/create", "/tickets/edit").hasAnyAuthority("USER")     //USER HOME 
+    .requestMatchers("/tickets/create", "/tickets/edit").hasAnyAuthority("USER")     //USER HOME AGGIUNGI TICKET  
     .requestMatchers("/tickets/show").hasAnyAuthority("USER","OPERATOR","ADMIN")     //DETTAGLIO TICKET
-    .requestMatchers("/tickets/show/operators").hasAuthority("ADMIN")     //LISTA OPERATORI
-    .requestMatchers("/tickets/show/notes").hasAnyAuthority("ADMIN", "OPERATORS")     //LISTA NOTE
-    .requestMatchers("/tickets/show/notes/edits").hasAnyAuthority("ADMIN", "OPERATORS")     //NOTE HOME AGGIUNGI NOTA
-    .requestMatchers("/operators/tasks").hasAuthority("OPERATOR")     //LISTA TASKS OPERATORE
+    .requestMatchers("/tickets/operators").hasAuthority("ADMIN")     //LISTA OPERATORI
+    .requestMatchers("/tickets/notes/**").hasAnyAuthority("ADMIN", "OPERATORS")     //LISTA NOTE + AGGIUNGI NOTA
+    .requestMatchers("/tasks").hasAuthority("OPERATOR")     //LISTA TASKS OPERATORE
 
     
 	.requestMatchers("/**").permitAll()
