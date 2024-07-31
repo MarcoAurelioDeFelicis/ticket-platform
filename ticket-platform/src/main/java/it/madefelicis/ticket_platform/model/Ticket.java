@@ -30,7 +30,7 @@ public class Ticket {
 	
 	@NotBlank(message= "Title cannot be null")
 	@Column(name= "title", nullable= false)
-	private String titile;
+	private String title;
 	
 	@NotBlank(message= "Body cannot be null")
 	@Column(name= "body", nullable= false)
@@ -71,12 +71,12 @@ public class Ticket {
 		this.id = id;
 	}
 
-	public String getTitile() {
-		return titile;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitile(String titile) {
-		this.titile = titile;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getBody() {

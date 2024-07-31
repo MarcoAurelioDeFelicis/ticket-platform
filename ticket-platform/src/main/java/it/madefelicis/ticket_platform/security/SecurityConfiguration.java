@@ -34,9 +34,8 @@ public class SecurityConfiguration {
     .requestMatchers("/tickets/operators").hasAuthority("ADMIN")     //LISTA OPERATORI
     .requestMatchers("/tickets/notes/**").hasAnyAuthority("ADMIN", "OPERATORS")     //LISTA NOTE + AGGIUNGI NOTA
     .requestMatchers("/tasks").hasAuthority("OPERATOR")     //LISTA TASKS OPERATORE
-
-    
 	.requestMatchers("/**").permitAll()
+	
 	.and().formLogin()
 	.and().logout()
 	.and().exceptionHandling();
