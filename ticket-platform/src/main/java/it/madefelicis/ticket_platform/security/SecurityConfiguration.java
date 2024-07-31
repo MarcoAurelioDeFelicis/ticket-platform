@@ -28,8 +28,15 @@ public class SecurityConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http)
 	throws Exception {
 	http.authorizeHttpRequests()
-	.requestMatchers("/user").hasAuthority("USER")
-	.requestMatchers("/admin").hasAuthority("ADMIN")
+    .requestMatchers("/tickets").hasAnyAuthority("ADMIN","USER")     //LISTA TICKETS
+    .requestMatchers("/tickets/create", "/tickets/edit").hasAnyAuthority("USER")     //USER HOME 
+    .requestMatchers("/tickets/show").hasAnyAuthority("USER","OPERATOR","ADMIN")     //DETTAGLIO TICKET
+    .requestMatchers("/tickets/show/operators").hasAuthority("ADMIN")     //LISTA OPERATORI
+    .requestMatchers("/tickets/show/notes").hasAnyAuthority("ADMIN", "OPERATORS")     //LISTA NOTE
+    .requestMatchers("/tickets/show/notes/edits").hasAnyAuthority("ADMIN", "OPERATORS")     //NOTE HOME AGGIUNGI NOTA
+    .requestMatchers("/operators/tasks").hasAuthority("OPERATOR")     //LISTA TASKS OPERATORE
+
+    
 	.requestMatchers("/**").permitAll()
 	.and().formLogin()
 	.and().logout()
@@ -64,6 +71,8 @@ public class SecurityConfiguration {
 	PasswordEncoder passwordEncoder() {
 	return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
+	
+//	AUTENTICAZIONE SU DATABASE
 	
 	@Bean
 	DaoAuthenticationProvider authenticationProvider() {
