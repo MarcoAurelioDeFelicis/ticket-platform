@@ -68,4 +68,9 @@ public class TicketServiceImpl implements TicketService {
 		ticketRepository.deleteById(id);
 	}
 
+    @Override
+    public List<Ticket> findByCategoryName(String categoryName) {
+	return null;
+}
+
 }

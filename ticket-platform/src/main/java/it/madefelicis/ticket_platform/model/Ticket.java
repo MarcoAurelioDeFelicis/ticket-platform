@@ -48,16 +48,16 @@ public class Ticket {
     }	
     
     @ManyToOne
-    @JoinColumn(name= "user_id", nullable= false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
     private User user;
-    
+
     @ManyToOne
-    @JoinColumn(name= "category_id", nullable= false)
+    @JoinColumn(name = "category_id", nullable = false)
     @JsonBackReference
     private Category category;
-    
-    @OneToMany(mappedBy= "ticket", cascade= CascadeType.ALL)
+
+    @OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Note> note;
     

@@ -28,12 +28,12 @@ public class SecurityConfiguration {
 	SecurityFilterChain filterChain(HttpSecurity http)
 	throws Exception {
 	http.authorizeHttpRequests()
-    .requestMatchers("/tickets").hasAnyAuthority("ADMIN","USER")     //LISTA TICKETS
-    .requestMatchers("/tickets/create", "/tickets/edit").hasAnyAuthority("USER")     //USER HOME AGGIUNGI TICKET  
-    .requestMatchers("/tickets/show").hasAnyAuthority("USER","OPERATOR","ADMIN")     //DETTAGLIO TICKET
-    .requestMatchers("/tickets/operators").hasAuthority("ADMIN")     //LISTA OPERATORI
-    .requestMatchers("/tickets/notes/**").hasAnyAuthority("ADMIN", "OPERATORS")     //LISTA NOTE + AGGIUNGI NOTA
-    .requestMatchers("/tasks").hasAuthority("OPERATOR")     //LISTA TASKS OPERATORE
+    .requestMatchers("/newticket").hasAnyAuthority("ADMIN")     //LISTA TICKETS
+    .requestMatchers("/newticket/create", "/newticket/edit").hasAnyAuthority("ADMIN")     //AGGIUNGI TICKET  
+    .requestMatchers("/newticket/show").hasAnyAuthority("USER","ADMIN")     //DETTAGLIO TICKET
+    .requestMatchers("/voperators").hasAuthority("ADMIN")     //LISTA OPERATORI
+    .requestMatchers("/tickets/notes/**").hasAnyAuthority("ADMIN")     //LISTA NOTE + AGGIUNGI NOTA
+    .requestMatchers("/tasks").hasAuthority("USER")     //LISTA TASKS OPERATORE
 	.requestMatchers("/**").permitAll()
 	
 	.and().formLogin()

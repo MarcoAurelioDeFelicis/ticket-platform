@@ -30,14 +30,15 @@ public class Note {
 	private LocalDateTime noteDate;
 	
 	@ManyToOne
-	@JoinColumn(name= "ticket_id" , nullable= false)
-	@JsonBackReference
-	private Ticket ticket;
-	
-	@ManyToOne
-	@JoinColumn(name= "author_id" , nullable= false)
-	@JsonBackReference
-	private User author;
+    @JoinColumn(name = "ticket_id" , nullable = false)
+    @JsonBackReference
+    private Ticket ticket;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id" , nullable = false)
+    @JsonBackReference
+    private User author;
+
 	
 	
 //	GETTERS - SETTERS  //

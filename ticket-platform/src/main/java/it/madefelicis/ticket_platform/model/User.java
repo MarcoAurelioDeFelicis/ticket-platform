@@ -40,18 +40,16 @@ public class User {
 	@Column(name= "password", nullable=false, unique =false)
 	private String password;
 	
-	@Column(name= "status", nullable=false, columnDefinition= "TINYINT(1")
-	private boolean status;
-	// 0 = OCCUPATO
-	// 1 = DISPONIBILE
-	
-	@OneToMany(mappedBy= "user", cascade= CascadeType.ALL)
-	@JsonManagedReference
-	private List<Ticket> ticket;
-	
-	@ManyToMany(fetch= FetchType.EAGER)
-	@JsonBackReference
-	private Set<Role> role;
+	@Column(columnDefinition = "TINYINT(1)", nullable = false)
+    private boolean status; // 0 = occupato , 1 = disponibile
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Ticket> ticket;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
+    private Set<Role> role;
 	
 	
 //	GETTERS - SETTERS  //

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import it.madefelicis.ticket_platform.model.Ticket;
 import it.madefelicis.ticket_platform.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
@@ -13,5 +14,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 
 	    //  PER OPERATORI DISPONIBILI
 	    List<User> findByStatusTrue();
+
+		List<Ticket> findByUsernameOrderByIdDesc(String userName);
 
 }

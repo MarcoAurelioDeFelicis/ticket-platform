@@ -8,6 +8,7 @@ import it.madefelicis.ticket_platform.model.Ticket;
 public interface TicketService {
 	
 	public Optional<Ticket> findByid(Integer Id);
+	public List<Ticket> findByCategoryName(String categoryName);
 	
 	List<Ticket> findAll();
 	
@@ -19,6 +20,7 @@ public interface TicketService {
 	public Ticket update (Integer id, Ticket ticket);
 	
 	public void delete (Integer id);
+
 
 
 	

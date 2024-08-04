@@ -24,7 +24,7 @@ public class Category {
 	private String category;
 	
 //	CATEGORIA COLLEGATA A TICKET MANY TO MANY
-	@ManyToMany(mappedBy = "categories")
+	@ManyToMany(mappedBy = "category")
 	private List<Ticket> ticket;
 	
 //	GETTERS - SETTERS  //
