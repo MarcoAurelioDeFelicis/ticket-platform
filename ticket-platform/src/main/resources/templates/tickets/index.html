@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<title>INDEX</title>
+</head>
+<body>
+
+	<div class="container">
+		<div class="text-center">
+			<h1>Tabella dei ticket</h1>
+		</div>
+		
+		<table id="table-1" class="table table-striped">
+			<thead>
+				<tr>
+					<th>TITOLO</th>
+					<th>operatore</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ticket : ${list}">
+					<td th:text="${ticket.title}">1</td>
+					<td>
+					    <div class="pt-2" th:text="${ticket.user.username}">
+					    </div>
+				    </td>
+
+					<td class="d-flex justify-content-center gap-2" >
+						<a class="btn btn-primary"
+							th:href="@{|/tickets/show/${ticket.id}|}"> <i class="bi bi-book"></i>
+							
+						</a> <a class="btn btn-primary"
+							th:href="@{|/tickets/edit/${ticket.id}|}"> <i
+								class="bi bi-pencil-square"></i>
+						</a>
+						<form th:action="@{'/tickets/delete/{id}'(id=${ticket.id})}"
+							method="post">
+							<button class="btn btn-danger" type="submit" id="submitButton"
+								th:data-confirm-delete="|Sei sicuro di voler cancellare il ticket?|"
+								onclick="if(!confirm(this.getAttribute('data-confirm-delete'))) return false">
+								<i class="bi bi-trash"></i>
+							</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<a class="btn btn-primary" 
+				th:href="@{/tickets/create}" 
+				sec:authorize="hasAuthority('ADMIN')"
+				> Apri nuovo ticket
+			</a>
+		</div>
+	</div>
+	<div th:if="${list.isEmpty()}">
+		<span> La ricerca non ha prodotto risultati </span>
+	</div>
+	<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}" />
+
+<title>SHOW</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Dettaglio deel TICKET</h1>
+
+		<h2 th:text="${ticket.title}"></h2>
+
+<!--		<h3 th:text="${ticket.author}"></h3>-->
+
+        <div>
+			<div class="card" style="width: 18rem;">
+			  <div class="card-body">
+			    <h5 class="card-title">Card title</h5>
+			    <h6 class="card-subtitle mb-2 text-muted" th:text="${ticket.title}"></h6>
+			    <p class="card-text" th:text="|body: ${ticket.body}|"></p>
+		        <p >Categoria: </p>
+		        <ul>
+			        <li th:each="category: ${ticket.category}" 
+					     th:text="${category.name}"></li>
+		        </ul>
+			  </div>
+		
+		<div th:unless="${ticket.note.isEmpty()}" class="table table-striped">
+			<table id="note">
+				<thead>
+					<tr>
+						<th>Data creazione nota</th>
+						<th>Note</th>
+						<th>BodyNota</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="nota : ${ticket.note}">
+						<td th:text="${nota.noteDate}">1   </td>
+<!--						<td th:text="${note.noteDate}">1   </td>-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:if="${ticket.note.isEmpty()}" >
+			<p >Non ci sono note per questo ticket</p>
+		</div>
+		<a class="btn btn-primary" th:href="@{/tickets/{id}/note(id=${ticket.id})}"
+		sec:authorize="hasAuthority('ADMIN')"> Lascia una nuova nota </a>
+		
+<!--		<a class="btn btn-primary" th:href="@{/tickets}" sec:authorize="hasAuthority('ADMIN')"> Torna alla lista dei TICKET </a>-->
+		<a class="btn btn-primary" th:href="@{/tickets}" sec:authorize="hasAuthority('ADMIN')"> Torna alla lista dei TICKET </a>
+<!--		<a class="btn btn-primary" th:href="@{/tickets/user/tasks} "sec:authorize="hasAuthority('USER')">-->
+<!--			 Torna alla lista dei TICKET utente </a>-->
+	</div>
+	
+
+	<script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
